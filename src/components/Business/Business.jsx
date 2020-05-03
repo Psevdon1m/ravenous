@@ -2,17 +2,47 @@ import React from "react";
 import "./Business.css";
 
 class Business extends React.Component {
+
+  constructor(props){
+    super(props)
+
+    //this.onClick = this.onClick.bind(this)
+  }
+ 
+
+  apiKey= 'AIzaSyCM4VvxEviBjv-5jLyq8EQEI24Ep2464r0'
+  
+  
+ 
+
+  //handleAddressClick(event) {}
+
+  //let businessAddressLink = ``
+
+   
+
   render() {
     const { business } = this.props;
+    //let businessWebPage = business.url;
+    let n = business.name;
+    let name = n.replace(" ", "+");
+    const urlToPlace = `https://www.google.com/maps/search/${name},${business.address},${business.lat},${business.long}`
+    
+    
+    
+    //console.log(businessWebPage)
     return (
       <div className="Business">
         <div className="image-container">
-          <img src={business.imageSrc} alt="pizza-img" />
+          <a href={business.url} target="_blank">
+          <img src={business.imageSrc} alt='food-img' />
+          </a>
+          
         </div>
         <h2>{business.name}</h2>
         <div className="Business-information">
           <div className="Business-address">
-            <p>{business.address}</p>
+    <a href={urlToPlace} target='_blank'>{business.name}</a>
             <p>{business.city}</p>
             <p>{`${business.state} ${business.zipCode}`}</p>
           </div>

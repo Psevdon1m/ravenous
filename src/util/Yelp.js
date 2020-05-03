@@ -18,6 +18,7 @@ export const Yelp = {
     }}).then((response) => {
             return response.json()
         } ).then(jsonResponse => {
+            console.log(jsonResponse)
             try{
                 if (jsonResponse.businesses) {
 
@@ -31,8 +32,13 @@ export const Yelp = {
                             state: business.location.state,
                             zipCode: business.location.zip_code,
                             category: business.categories[0].title,
+                            alias: business.alias,
                             rating: business.rating,
-                            reviewCount: business.review_count
+                            reviewCount: business.review_count,
+                            url: business.url,
+                            lat: business.coordinates.latitude,
+                            long: business.coordinates.longitude,
+
                         }
                            
                         

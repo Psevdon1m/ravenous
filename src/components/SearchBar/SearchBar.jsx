@@ -1,9 +1,12 @@
 import React from "react";
 import "./SearchBar.css";
+import Yelp from '../../util/Yelp'
+import Business from "../Business/Business";
 
 
 
 class SearchBar extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -17,13 +20,17 @@ class SearchBar extends React.Component {
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handlekeyPress = this.handlekeyPress.bind(this);
+  
 
     this.sortByOptions = {
       "Best Match": "best_match",
       "Highest Rated": "rating",
       "Most Reviewed": "review_count",
     }; 
+
+    
   }
+
 
   getSortByClass(sortByOption) {
     if (sortByOption === this.state.sortBy){
@@ -33,13 +40,13 @@ class SearchBar extends React.Component {
     };
   }
 
+
   handleSortByChange(sortByOption) {
     this.setState({
       sortBy: sortByOption
-    }, ()=> {
+      }, () => {
       this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-    })
-    
+    });
   }
 
   handleTermChange(event) {
@@ -56,16 +63,32 @@ class SearchBar extends React.Component {
     
   }
 
+  
+
   handlekeyPress(event){
+    let locations = ["san diego", "chicago" ,"paris" ,"philadelphia" ,"denver" ,"vancouver" ,"san francisco" ,"dallas" ,"berlin" ,"new york", "los angeles", "washington", "dc", "atlanta", "toronto", "honolulu", "miami", "san jose", "dublin", "detroit", "saint louis", "palo alto", "austin", "houston", "seattle", "boston", "minneapolis", "las vegas", "london", "madrid", "amsterdam", "portland", "oakland"]
+
     if(event.key === "Enter") {
+      if( locations.indexOf(this.state.location.toLowerCase()) === -1) {
+        console.log(`This location is unavaialble, please choose one of these: ${locations}`)
+      } else {
+        this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+        event.preventDefault();
+    }
+  }
+}
+
+  handleSearch(event){
+    let locations = ["san diego", "chicago" ,"paris" ,"philadelphia" ,"denver" ,"vancouver" ,"san francisco" ,"dallas" ,"berlin" ,"new york", "los angeles", "washington", "dc", "atlanta", "toronto", "honolulu", "miami", "san jose", "dublin", "detroit", "saint louis", "palo alto", "austin", "houston", "seattle", "boston", "minneapolis", "las vegas", "london", "madrid", "amsterdam", "portland", "oakland"];
+
+    if(locations.indexOf(this.state.location.toLowerCase()) === -1){
+      console.log(`This location is unavaialble, please choose one of these: ${locations}`)
+    }else {
+      
       this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
       event.preventDefault();
     }
-  }
-
-  handleSearch(event){
-    this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-    event.preventDefault();
+    
   }
 
 
@@ -97,7 +120,7 @@ class SearchBar extends React.Component {
         <input onChange={this.handleTermChange} placeholder="Search Businesses" />
         <input onChange={this.handleLocationChange}
         onKeyPress={this.handlekeyPress}
-        placeholder="Where?" />
+        placeholder="Where? US/Europe" />
       </div>
       <div className="SearchBar-submit">
         <a onClick={this.handleSearch}>Let's Go</a>
@@ -105,6 +128,9 @@ class SearchBar extends React.Component {
     </div>
     );
   }
+
 }
+
+
 
 export default SearchBar;

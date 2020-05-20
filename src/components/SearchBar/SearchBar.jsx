@@ -84,7 +84,7 @@ class SearchBar extends React.Component {
   handleSearch(event){
     let locationsToAlert = ["San Diego", " Chicago" ," Paris" ," Philadelphia" ," Denver" ," Vancouver" ," San Francisco" ," Dallas" ," Berlin" ," New York", " Los Angeles", " Washington", " DC", " Atlanta", " Toronto", " Honolulu", " Miami", " San Jose", " Dublin", " Detroit", " Saint Louis", " Palo Alto", " Austin", " Houston", " Seattle", " Boston", " Minneapolis", " Las Vegas", " London", " Madrid", " Amsterdam", " Portland", " Oakland"]
 
-    let locations = ["san diego ", "chicago " ,"paris " ,"philadelphia " ,"denver " ,"vancouver " ,"san francisco " ,"dallas " ,"berlin " ,"new york ", "los angeles ", "washington ", "dc ", "atlanta ", "toronto ", "honolulu ", "miami ", "san jose ", "dublin ", "detroit ", "saint louis ", "palo alto ", "austin ", "houston ", "seattle ", "boston ", "minneapolis ", "las vegas ", "london ", "madrid ", "amsterdam ", "portland ", "oakland "];
+    let locations = ["san diego", "chicago" ,"paris" ,"philadelphia" ,"denver" ,"vancouver" ,"san francisco" ,"dallas" ,"berlin" ,"new york", "los angeles", "washington", "dc", "atlanta", "toronto", "honolulu", "miami", "san jose", "dublin", "detroit", "saint louis", "palo alto", "austin", "houston", "seattle", "boston", "minneapolis", "las vegas", "london", "madrid", "amsterdam", "portland", "oakland"]
 
     if(locations.indexOf(this.state.location.toLowerCase()) === -1){
       alert(`This location is unavaialble, please choose one of these: ${locationsToAlert}`)
